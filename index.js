@@ -1,7 +1,6 @@
 const express = require("express");
-const PizZip = require("pizzip");
-const Docxtemplater = require("docxtemplater");
 const { genrateTemplate } = require("./template-generator");
+const { sendMail } = require("./mail-sender");
 
 var admin = require("firebase-admin");
 admin.initializeApp({
@@ -45,10 +44,14 @@ app.post("/send-mail", async (req, res) => {
       .file("email-template/Certificat.docx")
       .download();
     const buf = genrateTemplate(dto, myFile[0]);
-    // await sendMail(dto, buf);
-    return res.send(myFile);
+    try {
+      await sendMail(dto, buf);
+      return res.send("email sent");
+    } catch (error) {
+      console.log(error);
+      return res.status(500).send("Something went wrong sending the email");
+    }
   }
 });
-
 
 app.listen(process.env.PORT || 3000);
