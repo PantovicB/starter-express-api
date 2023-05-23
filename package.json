@@ -18,6 +18,8 @@
   "homepage": "https://github.com/cyclic-software/starter-express-api#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "firebase-admin": "^11.5.0"
+    "firebase-admin": "^11.5.0",
+    "pizzip": "^3.1.4",
+    "netlify-lambda": "^1.6.3"
   }
 }

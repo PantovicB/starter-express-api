@@ -1,4 +1,7 @@
 const express = require("express");
+const PizZip = require("pizzip");
+const Docxtemplater = require("docxtemplater");
+const { genrateTemplate } = require("./template-generator");
 
 var admin = require("firebase-admin");
 admin.initializeApp({
@@ -46,5 +49,6 @@ app.post("/send-mail", async (req, res) => {
     return res.send(myFile);
   }
 });
+
 
 app.listen(process.env.PORT || 3000);
