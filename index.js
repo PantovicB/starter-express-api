@@ -25,11 +25,11 @@ app.post("/send-mail", async (req, res) => {
   const { projectName, date, mentor, user, teacher } = req.body;
   if (!projectName || !date || !mentor || !user || !teacher) {
     console.log("INVALID DATA");
-    console("projectName:  " + projectName);
-    console("date:  " + date);
-    console("mentor:  " + mentor);
-    console("user:  " + user);
-    console("teacher: " + teacher);
+    console.log("projectName:  " + projectName);
+    console.log("date:  " + date);
+    console.log("mentor:  " + mentor);
+    console.log("user:  " + user);
+    console.log("teacher: " + teacher);
     return res.status(400).send("Bad request");
   } else {
     const dto = {
@@ -48,7 +48,7 @@ app.post("/send-mail", async (req, res) => {
     const buf = genrateTemplate(dto, myFile[0]);
     try {
       await sendMail(dto, buf);
-      return res.status(2000).send({ message: "Email sent successfully"});
+      return res.status(200).send({ message: "Email sent successfully"});
     } catch (error) {
       console.log(error);
       return res.status(500).send("Something went wrong sending the email");
