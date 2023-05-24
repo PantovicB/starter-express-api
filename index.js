@@ -1,6 +1,7 @@
 const express = require("express");
 const { genrateTemplate } = require("./template-generator");
 const { sendMail } = require("./mail-sender");
+const cors = require('cors')
 
 var admin = require("firebase-admin");
 admin.initializeApp({
@@ -10,6 +11,7 @@ admin.initializeApp({
 });
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 app.all("/", (req, res) => {
