@@ -1,7 +1,7 @@
 const express = require("express");
 const { genrateTemplate } = require("./template-generator");
 const { sendMail } = require("./mail-sender");
-const cors = require('cors')
+const cors = require("cors");
 
 var admin = require("firebase-admin");
 admin.initializeApp({
@@ -25,11 +25,11 @@ app.post("/send-mail", async (req, res) => {
   const { projectName, date, mentor, user, teacher } = req.body;
   if (!projectName || !date || !mentor || !user || !teacher) {
     console.log("INVALID DATA");
-    console(`projectName: ${projectName}`);
-    console(`date: ${date}`);
-    console(`mentor: ${mentor}`);
-    console(`user: ${user}`);
-    console(`teacher: ${teacher}`);
+    console("projectName:  " + projectName);
+    console("date:  " + date);
+    console("mentor:  " + mentor);
+    console("user:  " + user);
+    console("teacher: " + teacher);
     return res.status(400).send("Bad request");
   } else {
     const dto = {
@@ -48,7 +48,7 @@ app.post("/send-mail", async (req, res) => {
     const buf = genrateTemplate(dto, myFile[0]);
     try {
       await sendMail(dto, buf);
-      return res.send("email sent");
+      return res.status(2000).send({ message: "Email sent successfully"});
     } catch (error) {
       console.log(error);
       return res.status(500).send("Something went wrong sending the email");
