@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 app.all("/", (req, res) => {
-  console.log("app working!");
+  return res.status(200).send("app working!");
 });
 
 app.post("/send-mail", async (req, res) => {
