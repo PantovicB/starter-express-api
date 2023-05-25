@@ -15,9 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 app.all("/", (req, res) => {
-  console.log("Just got a request!");
-  console.log(JSON.parse(process.env.serviceAccountKey));
-  res.send(process.env);
+  console.log("app working!");
 });
 
 app.post("/send-mail", async (req, res) => {
@@ -28,7 +26,7 @@ app.post("/send-mail", async (req, res) => {
     console.log("projectName:  " + projectName);
     console.log("date:  " + date);
     console.log("mentor:  " + mentor);
-    console.log("user:  " + user);
+    console.log("user:  " + user ? JSON.stringify(user) : 'undefined');
     console.log("teacher: " + teacher);
     return res.status(400).send("Bad request");
   } else {
